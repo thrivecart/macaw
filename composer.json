@@ -1,5 +1,5 @@
 {
-	"name": "MarcFowler/macaw",
+	"name": "marcfowler/macaw",
 	"description": "Simple PHP router class.",
 	"license": "MIT",
 	"require": {
@@ -7,6 +7,6 @@
 	},
 
 	"autoload": {
-		"psr-4": {"MarcFowler\\Macaw\\": ""}
+		"psr-4": {"marcfowler\\macaw\\": ""}
 	}
 }

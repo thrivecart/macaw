@@ -9,7 +9,7 @@ If you have Composer, just include Macaw as a project dependency in your `compos
 
 ```
 require: {
-    "MarcFowler/macaw": "dev-master"
+    "marcfowler/macaw": "dev-master"
 }
 ```
 
@@ -18,7 +18,7 @@ require: {
 First, `use` the Macaw namespace:
 
 ```PHP
-use \MarcFowler\Macaw\Macaw;
+use \marcfowler\macaw\Macaw;
 ```
 
 Macaw is not an object, so you can just make direct operations to the class. Here's the Hello World:
@@ -86,4 +86,4 @@ If you don't specify an error callback, Macaw will just echo `404`.
 
 <hr>
 
-In order to let the server know the URI does not point to a real file, you may need to use one of the example [configuration files](https://github.com/MarcFowler/Macaw/blob/master/config).
+In order to let the server know the URI does not point to a real file, you may need to use one of the example [configuration files](https://github.com/marcfowler/macaw/blob/master/config).

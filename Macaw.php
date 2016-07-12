@@ -54,7 +54,7 @@ class Macaw {
    * If this is not set, it defaults to that in $_SERVER['REQUEST_METHOD']
   */
   public static function setMethod($method) {
-    self::$method = $method;
+    self::$method = strtoupper($method);
   }
 
   /**

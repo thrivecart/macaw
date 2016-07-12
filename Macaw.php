@@ -1,6 +1,6 @@
 <?php
 
-namespace NoahBuscher\Macaw;
+namespace MarcFowler\Macaw;
 
 /**
  * @method static Macaw get(string $route, Callable $callback)
@@ -15,6 +15,7 @@ class Macaw {
   public static $routes = array();
   public static $methods = array();
   public static $callbacks = array();
+  public static $method;
   public static $patterns = array(
       ':any' => '[^/]+',
       ':num' => '[0-9]+',
@@ -41,8 +42,19 @@ class Macaw {
     self::$error_callback = $callback;
   }
 
+  /**
+   * If a function matches, should processing stop?
+  */
   public static function haltOnMatch($flag = true) {
     self::$halts = $flag;
+  }
+
+  /**
+   * What HTTP verb (GET, POST, etc) should we be looking for?
+   * If this is not set, it defaults to that in $_SERVER['REQUEST_METHOD']
+  */
+  public static function setMethod($method) {
+    self::$method = $method;
   }
 
   /**
@@ -50,7 +62,8 @@ class Macaw {
    */
   public static function dispatch(){
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $method = $_SERVER['REQUEST_METHOD'];
+    $method = static::$method;
+    if(empty($method)) $method = $_SERVER['REQUEST_METHOD'];
 
     $searches = array_keys(static::$patterns);
     $replaces = array_values(static::$patterns);

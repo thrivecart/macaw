@@ -9,7 +9,7 @@ If you have Composer, just include Macaw as a project dependency in your `compos
 
 ```
 require: {
-    "noahbuscher/macaw": "dev-master"
+    "MarcFowler/macaw": "dev-master"
 }
 ```
 
@@ -18,7 +18,7 @@ require: {
 First, `use` the Macaw namespace:
 
 ```PHP
-use \NoahBuscher\Macaw\Macaw;
+use \MarcFowler\Macaw\Macaw;
 ```
 
 Macaw is not an object, so you can just make direct operations to the class. Here's the Hello World:
@@ -55,6 +55,25 @@ Macaw::post('/', function() {
 Macaw::dispatch();
 ```
 
+You may want to stop execution once a matching route is found. **Without** the call to `haltOnMatch()` below, if you requested `/`, you would see both 'Hello world!' _and_ 'I am further execution...' displayed. To prevent that, simply add the line:
+
+```PHP
+Macaw::haltOnMatch(true); // This will prevent further execution once a match is found
+
+Macaw::get('/', function() {
+  echo 'Hello world!';
+});
+
+Macaw::dispatch();
+
+echo 'I am further execution...';
+```
+
+If you need to overwrite the HTTP method that's being used for this request, you can set it:
+```PHP
+Macaw::setMethod('POST');
+```
+
 Lastly, if there is no route defined for a certain location, you can make Macaw run a custom callback, like:
 
 ```PHP
@@ -67,4 +86,4 @@ If you don't specify an error callback, Macaw will just echo `404`.
 
 <hr>
 
-In order to let the server know the URI does not point to a real file, you may need to use one of the example [configuration files](https://github.com/noahbuscher/Macaw/blob/master/config).
+In order to let the server know the URI does not point to a real file, you may need to use one of the example [configuration files](https://github.com/MarcFowler/Macaw/blob/master/config).

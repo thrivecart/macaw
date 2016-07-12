@@ -1,12 +1,12 @@
 {
-	"name": "noahbuscher/macaw",
+	"name": "MarcFowler/macaw",
 	"description": "Simple PHP router class.",
 	"license": "MIT",
 	"require": {
 		"php": ">=5.3.3"
 	},
-	
+
 	"autoload": {
-		"psr-4": {"NoahBuscher\\Macaw\\": ""}
+		"psr-4": {"MarcFowler\\Macaw\\": ""}
 	}
 }

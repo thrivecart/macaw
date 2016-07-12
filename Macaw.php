@@ -69,7 +69,6 @@ class Macaw {
   */
   public static function setPrefix($prefix = '') {
     self::$prefix = rtrim(trim($prefix), '/');
-    echo self::$prefix.'<br />';
   }
 
   /**

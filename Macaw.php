@@ -16,6 +16,7 @@ class Macaw {
   public static $methods = array();
   public static $callbacks = array();
   public static $method;
+  public static $prefix = '';
   public static $patterns = array(
       ':any' => '[^/]+',
       ':num' => '[0-9]+',
@@ -27,7 +28,12 @@ class Macaw {
    * Defines a route w/ callback and method
    */
   public static function __callstatic($method, $params) {
-    $uri = dirname($_SERVER['PHP_SELF']).'/'.$params[0];
+    $uri = implode('/', array_filter(array(
+      dirname($_SERVER['PHP_SELF']),
+      self::$prefix,
+      $params[0],
+    )));
+
     $callback = $params[1];
 
     array_push(self::$routes, $uri);
@@ -58,10 +64,20 @@ class Macaw {
   }
 
   /**
+   * Set the prefix to all routes
+   * If you know you're running this script at '/some-folder/subfolder/routes', this will strip the first part
+  */
+  public static function setPrefix($prefix = '') {
+    self::$prefix = rtrim(trim($prefix), '/');
+    echo self::$prefix.'<br />';
+  }
+
+  /**
    * Runs the callback for the given request
    */
   public static function dispatch(){
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
     $method = static::$method;
     if(empty($method)) $method = $_SERVER['REQUEST_METHOD'];
 

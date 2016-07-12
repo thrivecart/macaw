@@ -31,6 +31,15 @@ Macaw::get('/', function() {
 Macaw::dispatch();
 ```
 
+You can specify a prefix which will be added to all of your routes. This is useful to prevent duplication if you know you're running behind a particular URL that isn't always defined by the directory you're executing from. For example, if you know your file is accessed at `/subfolder/somewhere-else/`, you can:
+
+```PHP
+Macaw::setPrefix('/subfolder/somewhere-else/');
+Macaw::get('/', function() {
+  echo 'Hello!';
+});
+```
+
 Macaw also supports lambda URIs, such as:
 
 ```PHP

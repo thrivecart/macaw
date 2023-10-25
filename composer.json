@@ -1,5 +1,5 @@
 {
-	"name": "marcfowler/macaw",
+	"name": "tcdev/macaw",
 	"description": "Simple PHP router class.",
 	"license": "MIT",
 	"require": {
